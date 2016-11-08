@@ -48,8 +48,7 @@ export class SpesialComponent extends OnInit {
 
 constructor(private _service: PersonService) {
         super();
-    }
-    
+    }    
 
   execute() {
     this._service.getRandom().then(data => {
