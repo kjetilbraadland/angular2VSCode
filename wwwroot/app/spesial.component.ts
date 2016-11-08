@@ -18,7 +18,7 @@ import { PersonService, Person } from './person.service';
       outline: 0;
       cursor: pointer;
       height: 30px;
-      width: 30px;
+      width: 40px;
       border: 0;
       border-radius: 3px;
       background: #0088cc;
@@ -28,15 +28,15 @@ import { PersonService, Person } from './person.service';
   template: `
     <div class="spesial">
       <div class="spesial__container">    
-        
-          <button (click)="execute();" class="spesial__button">
-          <ul>
+        <ul>
           <li *ngFor="let person of persons">
           <strong>{{person.name}}</strong><br>
           from: {{person.city}}<br>
           date of birth: {{person.dob | date: 'dd/MM/yyyy'}}
           </li>
           </ul>
+          <button (click)="execute();" class="spesial__button">
+          next
         </button>
       </div>
     </div>
@@ -48,7 +48,6 @@ export class SpesialComponent extends OnInit {
 
 constructor(private _service: PersonService) {
         super();
-
     }
 
   execute() {
@@ -61,7 +60,5 @@ constructor(private _service: PersonService) {
         this._service.getRandom().then(data => {
             this.persons = data;
         })
-    }
-
-    
+    }    
 }
