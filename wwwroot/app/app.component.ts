@@ -4,7 +4,7 @@ import { PersonService, Person } from './person.service';
 @Component({
     selector: 'my-app',
     template: `
-    <h1>My First Angular 2 App</h1>
+    <h1>My First Angular 2 App hello lalattttttttttttttttttttt</h1>    
     <ul>
     <li *ngFor="let person of persons">
     <strong>{{person.name}}</strong><br>
@@ -12,15 +12,18 @@ import { PersonService, Person } from './person.service';
     date of birth: {{person.dob | date: 'dd/MM/yyyy'}}
     </li>
     </ul>
+    <h2>lol1</h2>
     `,
     providers: [
         PersonService
     ]
 })
+
 export class AppComponent extends OnInit {
 
     constructor(private _service: PersonService) {
         super();
+
     }
 
     ngOnInit() {

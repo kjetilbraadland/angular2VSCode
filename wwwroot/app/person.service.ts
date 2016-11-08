@@ -8,11 +8,15 @@ export class PersonService {
     constructor(private _http: Http) { }
 
     loadData(): Promise<Person[]> {
-        return this._http.get('/api/persons')
+        return this._http.get('/api/persons/GetPersons')
             .toPromise()
             .then(response => this.extractArray(response))
-            .catch(this.handleErrorPromise);
+            .catch(this.handleErrorPromise);     
     }    
+
+    getRandom() : Promise<Person[]>{
+        return this._http.get('/api/persons/GetRandomPerson').toPromise().then(Response => this.extractArray(Response)).catch(this.handleErrorPromise);
+    }
 
     protected extractArray(res: Response, showprogress: boolean = true) {
         let data = res.json();

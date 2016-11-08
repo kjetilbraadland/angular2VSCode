@@ -35349,6 +35349,8 @@
 	var platform_browser_1 = __webpack_require__(21);
 	var app_component_1 = __webpack_require__(29);
 	var person_service_1 = __webpack_require__(30);
+	var counter_component_1 = __webpack_require__(32);
+	var spesial_component_1 = __webpack_require__(33);
 	var AppModule = (function () {
 	    function AppModule() {
 	    }
@@ -35358,11 +35360,11 @@
 	                platform_browser_1.BrowserModule,
 	                forms_1.FormsModule,
 	                http_1.HttpModule],
-	            declarations: [app_component_1.AppComponent],
+	            declarations: [app_component_1.AppComponent, counter_component_1.CounterComponent, spesial_component_1.SpesialComponent],
 	            providers: [
 	                person_service_1.PersonService,
 	            ],
-	            bootstrap: [app_component_1.AppComponent]
+	            bootstrap: [app_component_1.AppComponent, counter_component_1.CounterComponent, spesial_component_1.SpesialComponent]
 	        }), 
 	        __metadata('design:paramtypes', [])
 	    ], AppModule);
@@ -42582,7 +42584,7 @@
 	    AppComponent = __decorate([
 	        core_1.Component({
 	            selector: 'my-app',
-	            template: "\n    <h1>My First Angular 2 App</h1>\n    <ul>\n    <li *ngFor=\"let person of persons\">\n    <strong>{{person.name}}</strong><br>\n    from: {{person.city}}<br>\n    date of birth: {{person.dob | date: 'dd/MM/yyyy'}}\n    </li>\n    </ul>\n    ",
+	            template: "\n    <h1>My First Angular 2 App hello lalattttttttttttttttttttt</h1>    \n    <ul>\n    <li *ngFor=\"let person of persons\">\n    <strong>{{person.name}}</strong><br>\n    from: {{person.city}}<br>\n    date of birth: {{person.dob | date: 'dd/MM/yyyy'}}\n    </li>\n    </ul>\n    <h2>lol1</h2>\n    ",
 	            providers: [
 	                person_service_1.PersonService
 	            ]
@@ -42617,10 +42619,14 @@
 	    }
 	    PersonService.prototype.loadData = function () {
 	        var _this = this;
-	        return this._http.get('/api/persons')
+	        return this._http.get('/api/persons/GetPersons')
 	            .toPromise()
 	            .then(function (response) { return _this.extractArray(response); })
 	            .catch(this.handleErrorPromise);
+	    };
+	    PersonService.prototype.getRandom = function () {
+	        var _this = this;
+	        return this._http.get('/api/persons/GetRandomPerson').toPromise().then(function (Response) { return _this.extractArray(Response); }).catch(this.handleErrorPromise);
 	    };
 	    PersonService.prototype.extractArray = function (res, showprogress) {
 	        if (showprogress === void 0) { showprogress = true; }
@@ -42663,6 +42669,98 @@
 	var toPromise_1 = __webpack_require__(26);
 	Observable_1.Observable.prototype.toPromise = toPromise_1.toPromise;
 	//# sourceMappingURL=toPromise.js.map
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(3);
+	var CounterComponent = (function () {
+	    function CounterComponent() {
+	        this.counterValue = 0;
+	    }
+	    CounterComponent.prototype.increment = function () {
+	        this.counterValue++;
+	    };
+	    CounterComponent.prototype.decrement = function () {
+	        this.counterValue--;
+	    };
+	    CounterComponent = __decorate([
+	        core_1.Component({
+	            selector: 'counter',
+	            styles: ["\n    .counter {\n      position: relative;\n    }\n    .counter__input {\n      border: 0;\n      border-radius: 3px;\n      height: 30px;\n      max-width: 100px;\n      text-align: center;\n    }\n    .counter__button {\n      outline: 0;\n      cursor: pointer;\n      height: 30px;\n      width: 30px;\n      border: 0;\n      border-radius: 3px;\n      background: #0088cc;\n      color: #fff;\n    }\n  "],
+	            template: "\n    <div class=\"counter\">\n      <div class=\"counter__container\">\n        <button (click)=\"decrement();\" class=\"counter__button\">\n          -\n        </button>\n        <input type=\"text\" class=\"counter__input\" [value]=\"counterValue\">\n        <button (click)=\"increment();\" class=\"counter__button\">\n          +\n        </button>\n      </div>\n    </div>\n  "
+	        }), 
+	        __metadata('design:paramtypes', [])
+	    ], CounterComponent);
+	    return CounterComponent;
+	}());
+	exports.CounterComponent = CounterComponent;
+
+
+/***/ },
+/* 33 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(3);
+	var person_service_1 = __webpack_require__(30);
+	var SpesialComponent = (function (_super) {
+	    __extends(SpesialComponent, _super);
+	    function SpesialComponent(_service) {
+	        _super.call(this);
+	        this._service = _service;
+	        this.numberValue = 0;
+	        this.persons = [];
+	    }
+	    SpesialComponent.prototype.execute = function () {
+	        var _this = this;
+	        this._service.getRandom().then(function (data) {
+	            _this.persons = data;
+	        });
+	    };
+	    SpesialComponent.prototype.ngOnInit = function () {
+	        var _this = this;
+	        this._service.getRandom().then(function (data) {
+	            _this.persons = data;
+	        });
+	    };
+	    SpesialComponent = __decorate([
+	        core_1.Component({
+	            selector: 'spesial',
+	            styles: ["\n    .spesial {\n      position: relative;\n    }\n    .spesial__input {\n      border: 0;\n      border-radius: 3px;\n      height: 30px;\n      max-width: 100px;\n      text-align: center;\n    }\n    .spesial__button {\n      outline: 0;\n      cursor: pointer;\n      height: 30px;\n      width: 30px;\n      border: 0;\n      border-radius: 3px;\n      background: #0088cc;\n      color: #fff;\n    }\n  "],
+	            template: "\n    <div class=\"spesial\">\n      <div class=\"spesial__container\">    \n        \n          <button (click)=\"execute();\" class=\"spesial__button\">\n          <ul>\n          <li *ngFor=\"let person of persons\">\n          <strong>{{person.name}}</strong><br>\n          from: {{person.city}}<br>\n          date of birth: {{person.dob | date: 'dd/MM/yyyy'}}\n          </li>\n          </ul>\n        </button>\n      </div>\n    </div>\n  "
+	        }), 
+	        __metadata('design:paramtypes', [person_service_1.PersonService])
+	    ], SpesialComponent);
+	    return SpesialComponent;
+	}(core_1.OnInit));
+	exports.SpesialComponent = SpesialComponent;
+
 
 /***/ }
 /******/ ]);
